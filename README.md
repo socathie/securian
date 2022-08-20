@@ -1,5 +1,9 @@
 # Securian: the 1st GUI wallet for Abelian
 
+## Video Demo
+[![Video Demo](assets/1.png)](assets/demo.mov)
+
+
 ## Prerequisites
 
 1. Setup Abelian full node miner or use their RPC. Follow the #abel-wallet channel on their [Discord](https://discord.gg/5rrDxP29hx) to setup Abewallet. Make sure you save your mnemonic and passphrases.
