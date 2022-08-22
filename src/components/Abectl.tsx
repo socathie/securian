@@ -72,7 +72,7 @@ export function Abectl() {
         setError("");
 
         const child = shell.exec(
-          ABECTL!.concat("walletpassphrase ").concat(passphrase).concat(" 300"),
+          ABECTL!.concat("walletunlock ").concat(passphrase).concat(" 300"),
           { async: true });
 
         child.on!('close', function (code) {
@@ -93,36 +93,36 @@ export function Abectl() {
     []
   );
 
-  const biometricHandler = useEventHandler<QPushButtonSignals>(
-    {
-      clicked: () => {
-        setError("");
+  // const biometricHandler = useEventHandler<QPushButtonSignals>(
+  //   {
+  //     clicked: () => {
+  //       setError("");
 
-        if (child_process.execSync("sudo echo hello").toString().startsWith("hello")) {
-          passphrase = PASSPHRASE!;
+  //       if (child_process.execSync("sudo echo hello").toString().startsWith("hello")) {
+  //         passphrase = PASSPHRASE!;
 
-          const child = shell.exec(
-            ABECTL!.concat("walletpassphrase ").concat(passphrase).concat(" 300"),
-            { async: true });
+  //         const child = shell.exec(
+  //           ABECTL!.concat("walletpassphrase ").concat(passphrase).concat(" 300"),
+  //           { async: true });
 
-          child.on!('close', function (code) {
-            if (code == 0) {
-              setUnlocked(true);
-              timeout();
-            }
-          });
+  //         child.on!('close', function (code) {
+  //           if (code == 0) {
+  //             setUnlocked(true);
+  //             timeout();
+  //           }
+  //         });
 
-          child.stderr!.on('data', function (data) {
-            setError(data);
-          });
-        }
+  //         child.stderr!.on('data', function (data) {
+  //           setError(data);
+  //         });
+  //       }
 
-        getBalance();
+  //       getBalance();
 
-      }
-    },
-    []
-  );
+  //     }
+  //   },
+  //   []
+  // );
 
   function timeout() {
     setTimeout(() => {
@@ -210,7 +210,7 @@ export function Abectl() {
       {/* <Text style={textStyle}>{error}</Text> */}
       <View style={containerStyle}>
         <Button style={btnStyle} on={unlockHandler} text={"Passphrase unlock for 5 minutes"} />
-        <Button icon={touchIdIcon} style={btnStyle} on={biometricHandler} text={"TouchID unlock for 5 minutes"} />
+        {/* <Button icon={touchIdIcon} style={btnStyle} on={biometricHandler} text={"TouchID unlock for 5 minutes"} /> */}
       </View>
     </View>
     )
